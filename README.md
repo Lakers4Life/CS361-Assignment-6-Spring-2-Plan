@@ -8,6 +8,7 @@ The microservice specifically is designed to export the data from our Main Progr
 ## How to Request Data: 
 
 Requesting Data is done by when the client will append a row to the request.csv with:
+
     status: "request"
     request_id: "unique string"
     client: "AMC_Movies", "Study_Tracker", "Subway_Times"
@@ -31,8 +32,9 @@ To programmatically recieve data (reading the response fields), the Microservice
     The data will be exported from the JSON file and be sent as a CSV File for in its respective download folder. 
   
 An example call in this code will be: 
-    row = wait_for_response(request_id=request_id, timeout_seconds=30, poll_seconds=0.5)
-    output_file = row.get("output_file", "").strip()
+
+     row = wait_for_response(request_id=request_id, timeout_seconds=30, poll_seconds=0.5)
+     output_file = row.get("output_file", "").strip()
   
 ## UML Sequence Diagram
 <img width="810" height="401" alt="image" src="https://github.com/user-attachments/assets/3efc57e1-d82e-444b-867b-d635e2ac7ae4" />
