@@ -1,0 +1,3 @@
+status,request_id,client,action,params,created_at,output_file,error
+done,f7ed138c-458b-4d01-b4dd-1f09930e62ba,AMC_Movies,export_csv,"{""input_file"": ""amc_export_data.json"", ""columns"": [""title"", ""date"", ""format""]}",2026-02-21T18:10:57,exports/AMC_Movies_f7ed138c-458b-4d01-b4dd-1f09930e62ba.csv,
+done,e2f376a2-7e9b-45ba-97a9-9b4171587ca8,AMC_Movies,export_csv,"{""input_file"": ""amc_export_data.json"", ""columns"": [""title"", ""date"", ""format""]}",2026-02-22T13:13:36,exports/AMC_Movies_e2f376a2-7e9b-45ba-97a9-9b4171587ca8.csv,
