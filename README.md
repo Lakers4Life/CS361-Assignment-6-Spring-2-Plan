@@ -21,28 +21,8 @@ The params must be a JSON object string with the input_file string which is the 
 
 An example call in code would be:
 
-  REQUEST_FILE = Path("request.csv")
-  FIELDS = ["status","request_id","client","action","params","created_at","output_file","error"]
-  
-  request_id = str(uuid.uuid4())
-  
-  params = {"input_file": "amc_export_data.json", "columns": ["title"]}
-  
-  row = {
-      "status": "request",
-      "request_id": request_id,
-      "client": "AMC_Movies",
-      "action": "export_csv",
-      "params": json.dumps(params),
-      "created_at": datetime.now().isoformat(timespec="seconds"),
-      "output_file": "",
-      "error": ""
-  }
-  
-  with REQUEST_FILE.open("a", newline="", encoding="utf-8") as f:
-      csv.DictWriter(f, fieldnames=FIELDS).writerow(row)
-  
-  print("Sent request_id:", request_id)
+  params = {"input_file": str(input_json), "columns": ["title", "date", "format"]}
+  request_id = append_request_row(client="AMC_Movies", params=params)
 
 ## How to Recieve Data:
 
@@ -51,25 +31,8 @@ To programmatically recieve data (reading the response fields), the Microservice
   The data will be exported from the JSON file and be sent as a CSV File for in its respective download folder. 
   
 An example call in this code will be: 
-
-  REQUEST_FILE = Path("request.csv")
-  
-  def wait_for_result(request_id: str, timeout=30):
-      start = time.time()
-      while time.time() - start < timeout:
-          with REQUEST_FILE.open("r", newline="", encoding="utf-8") as f:
-              for row in csv.DictReader(f):
-                  if row["request_id"] == request_id and row["status"] in ("done", "error"):
-                      return row
-          time.sleep(0.5)
-      raise TimeoutError("No response yet")
-  
-  resp = wait_for_result("PUT_REQUEST_ID_HERE")
-  
-  if resp["status"] == "done":
-      print("CSV created at:", resp["output_file"])
-  else:
-      print("Error:", resp["error"])
+  row = wait_for_response(request_id=request_id, timeout_seconds=30, poll_seconds=0.5)
+  output_file = row.get("output_file", "").strip()
 
 The UML Sequence Diagram is attached below:
 <img width="810" height="401" alt="image" src="https://github.com/user-attachments/assets/3efc57e1-d82e-444b-867b-d635e2ac7ae4" />
