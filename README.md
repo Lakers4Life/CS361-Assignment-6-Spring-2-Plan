@@ -1,4 +1,4 @@
-# CS361-Assignment-6-Spring-2-Plan
+# CS361-Exporting-Microservice
 A repository for the microservice - Exporting CSV Files from File
 
 ## Overview:
