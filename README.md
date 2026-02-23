@@ -65,6 +65,7 @@ An example call in this code will be:
       print("Error:", resp["error"])
 
 The UML Sequence Diagram is attached below:
+<img width="810" height="401" alt="image" src="https://github.com/user-attachments/assets/3efc57e1-d82e-444b-867b-d635e2ac7ae4" />
 
 
 Communication between Angela and Ranson is through Discord. 
